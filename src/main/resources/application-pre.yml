@@ -1,0 +1,50 @@
+server:
+  port: 8000
+  servlet:
+      context-path: /
+
+logging:
+  config: classpath:logback-pre.xml
+
+spring:
+  main:
+    banner-mode: off
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  datasource:
+    url: jdbc:mysql://localhost:3306/temp?useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      minimum-idle: 100
+      maximum-pool-size: 500
+      idle-timeout: 30000
+      connection-timeout: 30000
+
+sa-token:
+  is-log: true
+  timeout: -1
+  is-print: false
+  is-share: false
+  log-level: info
+  token-name: WST-DMS
+  token-style: uuid
+  is-concurrent: false
+  active-timeout: 1800
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  global-config:
+    banner: false
+    db-config:
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+  configuration:
+    log-impl: com.ninelock.api.core.config.MybatisLogging
+    cache-enabled: false
+
+mybatis-plus-join:
+  banner: false

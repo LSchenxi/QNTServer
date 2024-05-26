@@ -1,0 +1,29 @@
+<configuration>
+    <property name="LOG_PATH" value="app/logs" />
+    <property name="LOG_FILE" value="app.log" />
+    <property name="PATTERN_DEFAULT" value="%d{yyyy-MM-dd HH:mm:ss} [%-5level] %logger{16} [%file:%line] %msg%n" />
+
+    <!-- 文件日志 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/${LOG_FILE}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/${LOG_FILE}.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${PATTERN_DEFAULT}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 控制台日志 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${PATTERN_DEFAULT}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="FILE" />
+        <appender-ref ref="CONSOLE" />
+    </root>
+</configuration>

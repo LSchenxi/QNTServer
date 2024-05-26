@@ -1,0 +1,64 @@
+server:
+  port: 8000
+  servlet:
+      context-path: /
+
+logging:
+  config: classpath:logback-prod.xml
+
+spring:
+  main:
+    banner-mode: off
+  servlet:
+    multipart:
+      max-file-size: 500MB
+      max-request-size: 500MB
+  datasource:
+    url: jdbc:mysql://172.31.40.74:3306/qnt_robot?useSSL=false&serverTimezone=Asia/Shanghai
+#    database-1.c4kxzfksingx.ap-northeast-1.rds.amazonaws.com
+#    woPfjfOJoNGkPRtjnn5K
+
+    username: admin
+    password: D2BD5JHcfXyjWFYuEYvi
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 50
+      idle-timeout: 30000
+      connection-timeout: 30000
+
+sa-token:
+  is-log: true
+  timeout: -1
+  is-print: false
+  is-share: false
+  log-level: info
+  token-name: WST-DMS
+  token-style: uuid
+  is-concurrent: true
+  active-timeout: 604800
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  global-config:
+    banner: false
+    db-config:
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+  configuration:
+    log-impl: com.ninelock.api.core.config.MybatisLogging
+    cache-enabled: false
+
+mybatis-plus-join:
+  banner: false
+
+qnt_robot:
+    ip: localhost
+    port: 10000
+
+detectDbInfo:
+  jdbcDriver: com.mysql.cj.jdbc.Driver
+  dbUrl: jdbc:mysql://172.31.40.74:3306/detect?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8
+  dbName: detect
+  dbUser: admin
+  dbPassword: D2BD5JHcfXyjWFYuEYvi
